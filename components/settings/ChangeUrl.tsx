@@ -63,7 +63,7 @@ const ChangeUrl: React.FunctionComponent<ChangeUrlProps> = ({ url }) => {
       >
         <FormControl isInvalid={isError}>
           <InputGroup>
-            <InputLeftAddon children="https://churchkey.io/" fontWeight="medium" bgColor="black" color="white" borderColor="black"/>
+            <InputLeftAddon children={`${process.env.NEXT_PUBLIC_URL}/`} fontWeight="medium" bgColor="black" color="white" borderColor="black"/>
             <Input
               isDisabled={isLoading}
               value={newUrl}

@@ -1,5 +1,5 @@
 import { GetServerSideProps } from 'next'
-import { getSession } from 'next-auth/client'
+import { getSession } from 'next-auth/react'
 import { useQuery } from 'react-query'
 import { VStack } from '@chakra-ui/react'
 import axios from 'axios'

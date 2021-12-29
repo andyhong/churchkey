@@ -1,6 +1,6 @@
 import { useMutation, useQuery, useQueryClient } from 'react-query'
 import axios from 'axios'
-import { getSession, Session } from 'next-auth/client'
+import { getSession } from 'next-auth/react'
 import { GetServerSideProps } from 'next'
 import { Flex } from '@chakra-ui/react'
 

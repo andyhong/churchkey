@@ -15,9 +15,8 @@ const AddActionModal: React.FunctionComponent<AddActionModalProps> = ({ isDisabl
 
   const {
     handleSubmit,
-    errors,
+    formState: { errors, isSubmitting },
     register,
-    formState,
     reset
   } = useForm()
 
@@ -73,8 +72,8 @@ const AddActionModal: React.FunctionComponent<AddActionModalProps> = ({ isDisabl
                   isRequired
                   placeholder="Next Step"
                   name="name"
-                  ref={register({ required: true })}
-                  isDisabled={formState.isSubmitting}
+                  {...register("name", { required: true })}
+                  isDisabled={isSubmitting}
                 />
               </FormControl>
 
@@ -84,8 +83,8 @@ const AddActionModal: React.FunctionComponent<AddActionModalProps> = ({ isDisabl
                   isRequired
                   placeholder="Next Sunday @ 11am"
                   name="info"
-                  ref={register({ required: true })}
-                  isDisabled={formState.isSubmitting}
+                  {...register("info", { required: true })}
+                  isDisabled={isSubmitting}
                 />
               </FormControl>
 
@@ -94,8 +93,8 @@ const AddActionModal: React.FunctionComponent<AddActionModalProps> = ({ isDisabl
                 <Input
                   placeholder="https://..."
                   name="url"
-                  ref={register({ required: true })}
-                  isDisabled={formState.isSubmitting}
+                  {...register("url", { required: true })}
+                  isDisabled={isSubmitting}
                 />
               </FormControl>
               <FormErrorMessage>
@@ -111,7 +110,7 @@ const AddActionModal: React.FunctionComponent<AddActionModalProps> = ({ isDisabl
               _hover={{ bg: "white", color: "black"}}
               mr={3}
               type="submit"
-              isLoading={formState.isSubmitting}
+              isLoading={isSubmitting}
               >
                 Add
               </Button>

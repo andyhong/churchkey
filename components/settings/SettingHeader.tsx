@@ -1,5 +1,5 @@
 import { Flex, Heading, HStack, Button, Link } from '@chakra-ui/react'
-import { signOut } from 'next-auth/client'
+import { signOut } from 'next-auth/react'
 import { FiLogOut, FiLink } from 'react-icons/fi'
 
 type SettingHeaderProps = {

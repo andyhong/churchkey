@@ -1,19 +1,17 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { ObjectID } from "mongodb";
+import { ObjectId } from "mongodb";
 import { getToken } from 'next-auth/jwt'
-import { GenericObject } from "next-auth/_utils";
 
 import { connectToDatabase } from "../../../utils/mongo";
-import { useMergeRefs } from "@chakra-ui/react";
 
 const secret: string = process.env.JWT_SECRET!
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   const { method } = req
-  const token: GenericObject = await getToken({ req, secret })
+  const token = await getToken({ req, secret })
   const { db } = await connectToDatabase()
   const users = db.collection("users")
-  const userId = new ObjectID(token.id)
+  const userId = new ObjectId(token.sub)
 
   if (!token) {
     res.status(401).json({ message: "You are not authenticated." })

@@ -1,5 +1,5 @@
 import { Box, Flex, Heading, Text, Button } from '@chakra-ui/react'
-import { signIn } from 'next-auth/client'
+import { signIn } from 'next-auth/react'
 
 const Home: React.FunctionComponent = () => {
   return (

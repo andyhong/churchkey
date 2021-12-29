@@ -1,4 +1,4 @@
-import { MongoClient, Db } from 'mongodb'
+import { MongoClient, Db, ConnectOptions } from 'mongodb'
 
 const mongoUri: string = process.env.MONGO_URI!
 const mongoDb: string = process.env.MONGO_DB!
@@ -19,7 +19,7 @@ export async function connectToDatabase() {
     {
       useNewUrlParser: true,
       useUnifiedTopology: true
-    }
+    } as ConnectOptions
   )
 
   const db = client.db(mongoDb)

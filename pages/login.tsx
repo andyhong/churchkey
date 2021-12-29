@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router'
-import { signIn, getSession } from 'next-auth/client'
+import { signIn, getSession } from 'next-auth/react'
 import { Box, Flex, Heading, Text, Button, VStack, Alert, AlertIcon, AlertDescription } from '@chakra-ui/react'
 import { GetServerSideProps } from 'next'
 
@@ -36,10 +36,10 @@ const Login: React.FunctionComponent = () => {
           <Button border="1px" borderColor="#EA4335" bg="#EA4335" color="white" _hover={{ bg: "white", color: "#EA4335" }} onClick={() => handleLogin("google")}>
             Continue with Google
           </Button>
-          <Button border="1px" borderColor="#1DA1F2" bg="#1DA1F2" color="white" _hover={{ bg: "white", color: "#1DA1F2" }} onClick={() => handleLogin("twitter")}>
+          <Button isDisabled border="1px" borderColor="#1DA1F2" bg="#1DA1F2" color="white" _hover={{ bg: "white", color: "#1DA1F2" }} onClick={() => handleLogin("twitter")}>
             Continue with Twitter
           </Button>
-          <Button border="1px" borderColor="#1778F2" bg="#1778F2" color="white" _hover={{ bg: "white", color: "#1778F2" }} onClick={() => handleLogin("facebook")}>
+          <Button isDisabled border="1px" borderColor="#1778F2" bg="#1778F2" color="white" _hover={{ bg: "white", color: "#1778F2" }} onClick={() => handleLogin("facebook")}>
             Continue with Facebook
           </Button>
           <Button isDisabled>

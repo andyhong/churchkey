@@ -1,4 +1,3 @@
-import { ChangeEvent, useState } from 'react'
 import { Button, Modal, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, FormControl, FormLabel, Input, ModalFooter, useDisclosure, FormErrorMessage } from "@chakra-ui/react"
 import { FiEdit } from 'react-icons/fi'
 import { useMutation, useQueryClient } from 'react-query'
@@ -13,13 +12,10 @@ export type ActionModalProps = {
 const EditActionModal: React.FunctionComponent<ActionModalProps> = ({ action }) => {
   const { isOpen, onOpen, onClose } = useDisclosure()
 
-  const [actionState, setActionState] = useState(action)
-
   const {
     handleSubmit,
-    errors,
+    formState: { errors, isSubmitting },
     register,
-    formState,
     reset
   } = useForm()
 
@@ -57,17 +53,8 @@ const EditActionModal: React.FunctionComponent<ActionModalProps> = ({ action }) 
     onClose()
   })
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target
-    setActionState(prevState => ({
-      ...prevState,
-      [name]: value
-    }))
-  }
-
   const handleClose = () => {
     onClose()
-    setActionState(action)
     reset()
   }
 
@@ -89,18 +76,16 @@ const EditActionModal: React.FunctionComponent<ActionModalProps> = ({ action }) 
         <ModalOverlay />
         <ModalContent>
           <form onSubmit={submitHandler}>
-            <ModalHeader>Add an action</ModalHeader>
+            <ModalHeader>Edit an action</ModalHeader>
             <ModalCloseButton />
             <ModalBody pb={6}>
               <FormControl isRequired>
                 <FormLabel>Action Name</FormLabel>
                 <Input
                   isRequired
-                  value={actionState?.name}
-                  onChange={handleChange}
-                  name="name"
-                  ref={register({ required: true })}
-                  isDisabled={formState.isSubmitting}
+                  defaultValue={action.name}
+                  {...register("name", { required: true })}
+                  isDisabled={isSubmitting}
                 />
               </FormControl>
 
@@ -108,22 +93,18 @@ const EditActionModal: React.FunctionComponent<ActionModalProps> = ({ action }) 
                 <FormLabel>Additional Information</FormLabel>
                 <Input
                   isRequired
-                  value={actionState?.info}
-                  onChange={handleChange}
-                  name="info"
-                  ref={register({ required: true })}
-                  isDisabled={formState.isSubmitting}
+                  defaultValue={action.info}
+                  {...register("info", { required: true })}
+                  isDisabled={isSubmitting}
                 />
               </FormControl>
 
               <FormControl mt={4} isRequired>
                 <FormLabel>URL to Action</FormLabel>
                 <Input
-                  value={actionState?.url}
-                  onChange={handleChange}
-                  name="url"
-                  ref={register({ required: true })}
-                  isDisabled={formState.isSubmitting}
+                  defaultValue={action.url}
+                  {...register("url", { required: true })}
+                  isDisabled={isSubmitting}
                 />
               </FormControl>
               <FormErrorMessage>
@@ -139,7 +120,7 @@ const EditActionModal: React.FunctionComponent<ActionModalProps> = ({ action }) 
               _hover={{ bg: "white", color: "black"}}
               mr={3}
               type="submit"
-              isLoading={formState.isSubmitting}
+              isLoading={isSubmitting}
               >
                 Save
               </Button>

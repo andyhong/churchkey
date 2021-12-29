@@ -1,7 +1,7 @@
 import { ChangeEvent, useState } from 'react'
 import { Button, Modal, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, ModalFooter, FormControl, Input, useDisclosure, Text } from '@chakra-ui/react'
 import { useMutation, useQueryClient } from 'react-query'
-import { signOut } from 'next-auth/client'
+import { signOut } from 'next-auth/react'
 import axios from 'axios'
 
 type DeleteAccountModalProps = {

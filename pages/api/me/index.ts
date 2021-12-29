@@ -1,8 +1,7 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { ObjectID } from "mongodb";
 import { getToken } from 'next-auth/jwt'
-import { GenericObject } from "next-auth/_utils";
 import { nanoid } from 'nanoid'
+import { ObjectId } from "mongodb";
 
 import { connectToDatabase } from "../../../utils/mongo";
 
@@ -10,10 +9,10 @@ const secret: string = process.env.JWT_SECRET!
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   const { method } = req
-  const token: GenericObject = await getToken({ req, secret })
+  const token = await getToken({ req, secret })
   const { db } = await connectToDatabase()
   const users = db.collection("users")
-  const userId = new ObjectID(token.id)
+  const userId = new ObjectId(token.sub)
 
   if (!token) {
     res.status(401).json({ message: "You are not authenticated." })
@@ -39,7 +38,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   if (token && method === "POST") {
     const { body } = req
     const user = await users.findOne(body)
-    if (!user) {
+    if (user === null) {
       const update = await users.findOneAndUpdate(
         {
           _id: userId
