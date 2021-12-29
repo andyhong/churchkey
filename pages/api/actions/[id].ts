@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { ObjectId } from "mongodb";
 import { NextApiRequest, NextApiResponse } from "next";
 import { getToken } from 'next-auth/jwt'
