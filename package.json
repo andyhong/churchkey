@@ -24,7 +24,8 @@
     "react-hook-form": "^7.22.5",
     "react-icons": "^4.1.0",
     "react-query": "^3.5.12",
-    "react-spinners": "^0.11.0"
+    "react-spinners": "^0.11.0",
+    "react-typist": "^2.0.5"
   },
   "devDependencies": {
     "@types/mongodb": "^4.0.7",

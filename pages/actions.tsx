@@ -83,7 +83,6 @@ const Actions: React.FunctionComponent = () => {
     const newActions = Array.from(actionsQuery.data)
     newActions.splice(source.index, 1)
     newActions.splice(destination.index, 0, actionsQuery.data[source.index])
-    console.log(newActions)
     reorderActions.mutate({ actions: newActions })
 
   }

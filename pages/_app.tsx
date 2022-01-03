@@ -6,6 +6,7 @@ import { QueryClient, QueryClientProvider } from 'react-query'
 
 import theme from '../styles/theme'
 import fonts from '../styles/fonts'
+import "../styles/typist.css"
 
 const customTheme = extendTheme(theme)
 
